@@ -12,7 +12,7 @@ Don't know how?
 cd path/to/bar
 while :
 do
-  	python main.py
+    python main.py
     sleep 1
 done
 ```
