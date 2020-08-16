@@ -1,4 +1,3 @@
-from time import gmtime, strftime
 from datetime import datetime
 from json import loads
 from random import choice
@@ -6,7 +5,8 @@ from random import choice
 
 def main():
     """Main function that returns the values to the shell script that runs this."""
-    time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    time = datetime.now()
+    time = time.strftime("%m/%d/%Y, %H:%M:%S")
     print(f"{check_session()} / {time}")
 
 
