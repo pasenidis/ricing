@@ -21,17 +21,20 @@ def get_quote():
 
 
 def get_disk_usage():
+    """Returns the disk usage in gigabytes"""
     total, used, free = disk_usage("/")
     del total, used
     return f'💾 {free // (2**30)} GB'
 
 
 def get_virtual_memory():
+    """Returns the RAM usage in percents (using the psutil 3rd-party module)"""
     try:
         from psutil import virtual_memory
         ram_usage = virtual_memory().percent
         return f'⚡ {ram_usage}%'
     except ImportError:
+        # if psutil is not installed, then notify the user
         return 'psutil is not installed'
 
 
