@@ -1,13 +1,14 @@
 from datetime import datetime
 from json import loads
 from random import choice
+from shutil import disk_usage
 
 
 def main():
     """Main function that returns the values to the shell script that runs this."""
     time = datetime.now()
     time = time.strftime("%m/%d/%Y, %H:%M:%S")
-    print(f"{check_session()} / {time}")
+    print(f"{check_session()} / {get_disk_usage()} / {time}")
 
 
 def get_quote():
@@ -17,6 +18,12 @@ def get_quote():
     text = selected['text']
     author = selected['author']
     return f'{text[:30]}.. — {author}'
+
+
+def get_disk_usage():
+    total, used, free = disk_usage("/")
+    del total, used
+    return f'💾 {free // (2**30)} GB'
 
 
 def check_session():
