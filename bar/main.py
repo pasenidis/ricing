@@ -8,7 +8,7 @@ def main():
     """Main function that returns the values to the shell script that runs this."""
     time = datetime.now()
     time = time.strftime("%m/%d/%Y, %H:%M:%S")
-    print(f"{check_session()} / {get_disk_usage()} / {time}")
+    print(f"{check_session()} / {get_disk_usage()} / {get_virtual_memory()} / {time}")
 
 
 def get_quote():
@@ -24,6 +24,15 @@ def get_disk_usage():
     total, used, free = disk_usage("/")
     del total, used
     return f'💾 {free // (2**30)} GB'
+
+
+def get_virtual_memory():
+    try:
+        from psutil import virtual_memory
+        ram_usage = virtual_memory().percent
+        return f'{ram_usage}%'
+    except ImportError:
+        return 'psutil is not installed'
 
 
 def check_session():
