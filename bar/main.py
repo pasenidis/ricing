@@ -30,7 +30,7 @@ def get_virtual_memory():
     try:
         from psutil import virtual_memory
         ram_usage = virtual_memory().percent
-        return f'{ram_usage}%'
+        return f'⚡ {ram_usage}%'
     except ImportError:
         return 'psutil is not installed'
 
